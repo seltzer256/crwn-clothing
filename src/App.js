@@ -7,7 +7,10 @@ import { Switch, Route, Redirect } from "react-router";
 import { auth } from "./firebase/firebase.utils";
 import React from "react";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectCurrentUser } from "./redux/user/user.selector";
 import { setCurrentUser } from "./redux/user/user.actions";
+import CheckoutPage from "./pages/checkout/checkout.component";
 
 class App extends React.Component {
     // constructor() {
@@ -47,14 +50,15 @@ class App extends React.Component {
                             )
                         }
                     />
+                    <Route exact path="/checkout" component={CheckoutPage} />
                 </Switch>
             </div>
         );
     }
 }
 
-const mapStateToProps = ({ user }) => ({
-    currentUser: user.currentUser,
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
 });
 
 const mapDispatchToProps = (dispatch) => ({
