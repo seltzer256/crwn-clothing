@@ -6,19 +6,22 @@ import SignInAndSignUp from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.com
 import { Switch, Route } from "react-router";
 import { auth } from "./firebase/firebase.utils";
 import React from "react";
+import { connect } from "react-redux";
+import { setCurrentUser } from "./redux/user/user-actions";
 
 class App extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            currentUser: null,
-        };
-    }
+    // constructor() {
+    //     super();
+    //     this.state = {
+    //         currentUser: null,
+    //     };
+    // }
     componentDidMount() {
+        const { setCurrentUser } = this.props;
         this.unsuscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
             if (userAuth) {
             }
-            this.setState({ currentUser: userAuth });
+            setCurrentUser(userAuth);
             //console.log(user);
         });
     }
@@ -29,7 +32,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="">
-                <Header currentUser={this.state.currentUser} />
+                <Header />
                 <Switch>
                     <Route exact path="/" component={HomePage} />
                     <Route path="/shop" component={ShopPage} />
@@ -40,4 +43,7 @@ class App extends React.Component {
     }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+    setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+});
+export default connect(null, mapDispatchToProps)(App);
