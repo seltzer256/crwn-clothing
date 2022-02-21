@@ -6,36 +6,43 @@ import {
     addItem,
     removeItem,
 } from "../../redux/cart/cart.actions";
+import {
+    ArrowContainer,
+    CheckoutItemContainer,
+    ColumnsContainer,
+    ImageContainer,
+    RemoveButtonContainer,
+    ValueContainer,
+} from "./checkout-item.styles";
 
 const CheckoutItem = ({ cartItem, addItem, removeItem, clearItem }) => {
     const { name, imageUrl, price, quantity } = cartItem;
     return (
-        <div className="checkout-item">
-            <div className="image-container">
+        <CheckoutItemContainer>
+            <ImageContainer>
                 <img src={imageUrl} alt="item" />
-            </div>
-            <span className="name">{name}</span>
-            <span className="quantity">
-                <div className="arrow" onClick={() => removeItem(cartItem)}>
+            </ImageContainer>
+            <ColumnsContainer>{name}</ColumnsContainer>
+            <ColumnsContainer isQuantity>
+                <ArrowContainer onClick={() => removeItem(cartItem)}>
                     &#10094;
-                </div>
-                <div className="value">
+                </ArrowContainer>
+                <ValueContainer>
                     <span>{quantity}</span>
-                </div>
-                <div className="arrow" onClick={() => addItem(cartItem)}>
+                </ValueContainer>
+                <ArrowContainer onClick={() => addItem(cartItem)}>
                     &#10095;
-                </div>
-            </span>
-            <span className="price">{price}</span>
-            <span
-                className="remove-button"
+                </ArrowContainer>
+            </ColumnsContainer>
+            <ColumnsContainer>{price}</ColumnsContainer>
+            <RemoveButtonContainer
                 onClick={() => {
                     clearItem(cartItem);
                 }}
             >
                 &#10005;
-            </span>
-        </div>
+            </RemoveButtonContainer>
+        </CheckoutItemContainer>
     );
 };
 

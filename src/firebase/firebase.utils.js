@@ -34,14 +34,14 @@ export default firebase;
 //     appId: "1:605872603624:web:091077a1b7f7d9bbaea45d",
 //     measurementId: "G-X01YYRKL4N",
 // };
-// //const app = initializeApp(firebaseConfig);
-// // //const db = getFirestore(app);
-// // const auth = getAuth(app);
-// // const provider = new GoogleAuthProvider();
-// // provider.setCustomParameters({ prompt: "select_account" });
-// // const signInWithGoogle = () => signInWithPopup(provider);
-// // export { auth, signInWithGoogle };
-// // export default app;
+// const app = initializeApp(firebaseConfig);
+// //const db = getFirestore(app);
+// const auth = getAuth(app);
+// const provider = new GoogleAuthProvider();
+// provider.setCustomParameters({ prompt: "select_account" });
+// const signInWithGoogle = () => signInWithPopup(provider);
+// export { auth, signInWithGoogle };
+// export default app;
 
 // //export default getFirestore();
 // //Initialize Firebase
