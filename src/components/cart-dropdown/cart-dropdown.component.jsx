@@ -1,40 +1,41 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useContext } from "react";
 import CustomButtom from "../custom-button/custom-button.component";
 import CartItem from "../cart-item/cart-item.component";
-import { selectCartItems } from "../../redux/cart/cart.selectors";
-import { withRouter } from "react-router-dom";
-import { toggleCartHidden } from "../../redux/cart/cart.actions";
+import { useHistory } from "react-router-dom";
 import {
     CartDropdownContainer,
     CartItemsContainer,
     EmptyMessageSpan,
 } from "./cart-dropdown.styles";
+import { CartContext } from "../../providers/cart/cart.provider";
 
-const CartDropdown = ({ cartItems, history, dispatch }) => (
-    <CartDropdownContainer>
-        <CartItemsContainer>
-            {cartItems.length ? (
-                cartItems.map((cartItem) => (
-                    <CartItem key={cartItem.id} item={cartItem} />
-                ))
-            ) : (
-                <EmptyMessageSpan>Your cart is empty</EmptyMessageSpan>
-            )}
-        </CartItemsContainer>
-        <CustomButtom
-            onClick={() => {
-                history.push("/checkout");
-                dispatch(toggleCartHidden());
-            }}
-        >
-            Go to checkout
-        </CustomButtom>
-    </CartDropdownContainer>
-);
+const CartDropdown = () => {
+    const { cartItems, toggleHidden } = useContext(CartContext);
+    //const dispatch = useDispatch();
+    const history = useHistory();
+    //const { cartId } = useParams();
 
-const mapStateToProps = (state) => ({
-    cartItems: selectCartItems(state),
-});
+    return (
+        <CartDropdownContainer>
+            <CartItemsContainer>
+                {cartItems.length ? (
+                    cartItems.map((cartItem) => (
+                        <CartItem key={cartItem.id} item={cartItem} />
+                    ))
+                ) : (
+                    <EmptyMessageSpan>Your cart is empty</EmptyMessageSpan>
+                )}
+            </CartItemsContainer>
+            <CustomButtom
+                onClick={() => {
+                    history.push("/checkout");
+                    toggleHidden();
+                }}
+            >
+                Go to checkout
+            </CustomButtom>
+        </CartDropdownContainer>
+    );
+};
 
-export default withRouter(connect(mapStateToProps)(CartDropdown));
+export default CartDropdown;
