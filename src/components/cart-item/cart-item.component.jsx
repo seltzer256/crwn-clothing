@@ -6,16 +6,18 @@ import {
     PriceSpan,
 } from "./cart-item.styles";
 
-const CartItem = ({ item: { imageUrl, price, name, quantity } }) => (
-    <CartItemContainer>
-        <img as="img" src={imageUrl} alt={name} />
-        <ItemDetailsContainer>
-            <NameSpan>{name}</NameSpan>
-            <PriceSpan>
-                {quantity}x${price}
-            </PriceSpan>
-        </ItemDetailsContainer>
-    </CartItemContainer>
-);
+const CartItem = ({ item: { imageUrl, price, name, quantity } }) => {
+    return (
+        <CartItemContainer>
+            <img as="img" src={imageUrl} alt={name} />
+            <ItemDetailsContainer>
+                <NameSpan>{name}</NameSpan>
+                <PriceSpan>
+                    {quantity}x${price}
+                </PriceSpan>
+            </ItemDetailsContainer>
+        </CartItemContainer>
+    );
+};
 
 export default CartItem;

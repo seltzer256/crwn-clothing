@@ -38,4 +38,7 @@ export const OptionsContainer = styled.div`
 export const OptionContainer = styled.div`
     padding: 10px 15px;
     cursor: pointer;
+    @media screen and (max-width: 800px) {
+        padding: 0 10px;
+    }
 `;
