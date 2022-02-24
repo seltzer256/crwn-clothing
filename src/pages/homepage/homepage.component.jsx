@@ -3,7 +3,6 @@ import Directory from "../../components/directory/directory.component";
 import HomePageContainer from "./homepage.styles";
 
 const HomePage = () => {
-    throw new Error("Error");
     return (
         <HomePageContainer>
             <Directory />
