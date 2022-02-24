@@ -1,4 +1,5 @@
-import "./App.css";
+//import "./App.css";
+import { GlobalStyle } from "./global.styles";
 import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
 import Header from "./components/header/header.component";
@@ -36,6 +37,7 @@ const App = () => {
 
     return (
         <div className="">
+            <GlobalStyle />
             <CurrentUserContext.Provider value={currentUser}>
                 <Header />
             </CurrentUserContext.Provider>
